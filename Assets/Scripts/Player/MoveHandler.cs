@@ -37,38 +37,20 @@ public class MoveHandler : MonoBehaviour
         StartMoving();
     }
 
+	#region Handle Input Actions
+	private void HandleDownAction() => dir = 3;
 
-    
+	private void HandleRightAction() => dir = 4;
 
+	private void HandleLeftAction() => dir = 2;
 
+	private void HandleUpAction() => dir = 1;
+	#endregion
 
-    private void HandleDownAction()
-    {
-        dir = 3;
-    }
-
-    private void HandleRightAction()
-    {
-        dir = 4;
-    }
-
-    private void HandleLeftAction()
-    {
-        dir = 2;
-    }
-
-    private void HandleUpAction()
-    {
-        dir = 1;
-        
-    }
-
-
-    private void OnEnable()
+	private void OnEnable()
     {
         currentTime = 0;
     }
-
 
     public void StartMoving()
     {
@@ -90,7 +72,7 @@ public class MoveHandler : MonoBehaviour
                 _targetRotation = Mathf.Atan2(0f, 1f) * Mathf.Rad2Deg;// + _mainCamera.transform.eulerAngles.y;
                 transform.rotation = Quaternion.Euler(0.0f, _targetRotation, 0.0f);
                 nextTarget = transform.position + (transform.forward * nextTargetLength);
-                nextTarget = transform.position + (transform.forward * nextTargetLength);
+
                 dir = 0;
                 break;
             case 2:
