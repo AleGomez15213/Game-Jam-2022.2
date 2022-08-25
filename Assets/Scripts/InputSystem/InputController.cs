@@ -17,7 +17,7 @@ namespace Project.Scripts.InputSystem
         internal event RightAction OnRightTriggered = null;
         internal event InteractAction OnInteractTriggered = null;
 
-        PlayerInput _playerInput;
+        public PlayerInput _playerInput;
 
         [Header("Character Input Values")]
         public Vector2 move;
