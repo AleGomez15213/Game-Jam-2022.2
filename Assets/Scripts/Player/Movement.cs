@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
 	public float steerSpeed = 180f;
 	private float steerDirection;
 
+	private Vector3 force;
+
 	private void OnEnable()
 	{
 		move.Enable();
@@ -28,15 +30,15 @@ public class Movement : MonoBehaviour
 	private void Update()
 	{
 		transform.position += transform.forward * moveSpeed * Time.deltaTime;
-
 		steerDirection = move.ReadValue<Vector2>().x;
-		Quaternion deltaRotation = Quaternion.Euler(transform.rotation.x, steerDirection, transform.rotation.z);
-		rb.MoveRotation(rb.rotation * deltaRotation);
 
-		Ray ray = new Ray(transform.position, Vector3.down);
-		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit))
-		transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+		//Ray ray = new Ray(transform.position, Vector3.down);
+		//RaycastHit hit;
+		//if (Physics.Raycast(ray, out hit))
+		//	transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+
+		var angle = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, steerDirection * steerSpeed * Time.deltaTime, 0f));
+		transform.rotation = angle;
 
 	}
 }
